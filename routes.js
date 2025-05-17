@@ -1,14 +1,4 @@
 import Express from "express";
-
-import {
-
-  verifytoken,
-} from "./helperfunctions.js";
-import {
-  blogtoget,
-  deleteblog,
-  
-} from "./mongodb.js";
 import {  filter, login, post, signup, toDelete, update } from "./blogcontrollers.js";
 const router = Express.Router();
 
@@ -18,7 +8,7 @@ router.post("/signup", signup);
 //endpoint for user login
 router.post("/login",login)
 
-//endpoint to filter blogs by category and author
+//endpoint to filter blogs by category and author and retrive all blogs used for both
 router.get("/blogs",filter);
 
 //endpoint to post blogs
