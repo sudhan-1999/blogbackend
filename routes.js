@@ -25,35 +25,3 @@ router.delete("/deleteblog/:id", toDelete);
 
 const userRouter = router;
 export default userRouter;
-
-
-  try {
-    const {userid} = req.body;
-    console.log("userid",userid);
-    const token = req.headers["authorization"];
-    if (!token) {
-      return res.status(401).json({ message: "unauthorized user" });
-    }
-    const decodethetoken = await verifytoken(token);
-    if (!decodethetoken) {
-      return res.status(401).json({ message: "unauthorized user" });
-    }
-    const { id } = req.params;
-    console.log(id);
-
-    const getblogfordelte = await blogtoget(id);
-    console.log("getblogfordelte", getblogfordelte);
-    if (!getblogfordelte) {
-      return res.status(404).json({ message: "blog not found" });
-    }
-    if (getblogfordelte.userId != userid) {
-      return res.status(401).json({ message: "unauthorized user" });
-    }
-
-    await deleteblog(id);
-    res.status(200).json({ message: "blog deleted" });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ message: "internal server error", err });
-  }
-});*/ 

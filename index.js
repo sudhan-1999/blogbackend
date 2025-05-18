@@ -4,14 +4,7 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import userRouter from "./routes.js";
 
-//update need to check
-/*
 
-
-
-
-
-*/
 const app = Express();
 app.use(cors());
 app.use(Express.json());
