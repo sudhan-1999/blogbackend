@@ -20,13 +20,11 @@ export async function checkuser(email) {
 //to filter blogs
 export async function filteredblogs(filterblogs) {
   try {
-     const res= await client
+    return await client
       .db("Blog")
       .collection("blogs")
       .find(filterblogs)
       .toArray();
-      console.log("res", res);
-      return res
   } catch (err) {
     return err;
   }
@@ -54,7 +52,6 @@ export async function blogtoget(id) {
   }
 }
 
-
 //to delete blog by id
 export async function deleteblog(id) {
   try {
@@ -69,13 +66,27 @@ export async function deleteblog(id) {
 }
 
 //to update blog by id
-export async function updateblog(id,updatedblog){
-  try{
-    return await client.db("Blog").collection("blogs").updateOne(
-      { _id: new ObjectId(id) },
-      { $set: updatedblog }
-    );
-  }catch(err){
+export async function updateblog(id, updatedblog) {
+  try {
+    return await client
+      .db("Blog")
+      .collection("blogs")
+      .updateOne({ _id: new ObjectId(id) }, { $set: updatedblog });
+  } catch (err) {
     return err;
+  }
+}
+
+//find by id
+export async function findBlogsByUser(userid) {
+  try {
+    return await client
+      .db("Blog")
+      .collection("blogs")
+      .find({ userId: new ObjectId(userid) })
+      .toArray(); 
+               
+  } catch (err) {
+    throw err;
   }
 }
