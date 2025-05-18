@@ -47,7 +47,6 @@ export async function verifytoken(token) {
     return err;
   }
 }
-import jwt from "jsonwebtoken";
 
 
 
